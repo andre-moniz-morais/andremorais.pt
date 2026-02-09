@@ -1,82 +1,134 @@
 import { useState } from 'react'
 import './App.css'
 
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  tech: string[];
+  image?: string;
+}
+
+interface TimelineItem {
+  id: number;
+  year: string;
+  role: string;
+  organization: string;
+}
+
 function App() {
-  const [projects] = useState([
+  const [projects] = useState<Project[]>([
     {
       id: 1,
       title: 'Raydium Solana Bot',
-      description: 'Um bot de notificação de preços para Solana que alerta sobre variações significativas de preço.',
-      tech: ['Python', 'Solana', 'Crypto']
+      description: 'Bot de notificação em tempo real para monitorizar variações de preço na rede Solana.',
+      tech: ['Python', 'Solana API', 'Telegram Bot'],
+      image: 'https://placehold.co/600x400/10b981/ffffff?text=Raydium+Bot'
     },
     {
       id: 2,
       title: 'YouTube Automator',
-      description: 'Automação completa para produção de vídeos no YouTube sem esforço manual.',
-      tech: ['Automation', 'Video Processing', 'Python']
+      description: 'Pipeline completo de automação para produção e publicação de vídeos sem intervenção manual.',
+      tech: ['Python', 'FFmpeg', 'YouTube API'],
+      image: 'https://placehold.co/600x400/3b82f6/ffffff?text=YT+Automator'
     },
     {
       id: 3,
       title: 'Gals4Guys',
-      description: 'Plataforma web para showcase de modelos gerados por Inteligência Artificial.',
-      tech: ['React', 'AI', 'Web']
+      description: 'Plataforma web inovadora para showcase de modelos gerados por Inteligência Artificial.',
+      tech: ['React', 'Node.js', 'AI Integration'],
+      image: 'https://placehold.co/600x400/8b5cf6/ffffff?text=Gals4Guys'
     },
     {
       id: 4,
       title: 'Velvet Theory Music',
-      description: 'Projeto Django focado em pesquisa e teoria musical.',
-      tech: ['Django', 'Python', 'Music Theory']
+      description: 'Aplicação Django dedicada à pesquisa e catalogação de teoria musical avançada.',
+      tech: ['Django', 'PostgreSQL', 'Music Theory'],
+      image: 'https://placehold.co/600x400/f59e0b/ffffff?text=Velvet+Theory'
     }
+  ])
+
+  const [timeline] = useState<TimelineItem[]>([
+    { id: 7, year: '2025 - Atual', role: 'Engenheiro Informático', organization: 'Precise' },
+    { id: 6, year: '2025', role: 'Fundador', organization: 'Unlimited Solutions' },
+    { id: 5, year: '2023 - 2025', role: 'Engenheiro Informático', organization: 'Synertics' },
+    { id: 4, year: '2021 - 2023', role: 'Mestrado em Engenharia Informática (Sistemas Multimédia)', organization: 'Instituto Superior Politécnico do Porto' },
+    { id: 3, year: '2021', role: 'Fundador', organization: 'Skillskope (Startup)' },
+    { id: 2, year: '2018 - 2021', role: 'Licenciatura em Engenharia Informática', organization: 'Universidade de Aveiro' },
+    { id: 1, year: '2015 - 2018', role: 'Curso Tecnologias e Sistemas de Informação', organization: 'Colégio de Gaia' }
   ])
 
   return (
     <>
       <div className="container">
-        <header>
+        <header className="glass-panel" style={{ padding: '3rem', marginTop: '2rem' }}>
           <h1>André Morais</h1>
-          <p className="subtitle">Programador &amp; Criador de Soluções</p>
+          <p className="subtitle">Software Engineer & Founder • Portugal</p>
         </header>
 
         <section id="about">
           <h2>Sobre Mim</h2>
-          <p>
-            Olá! Sou o André, um programador apaixonado por criar soluções eficientes e inovadoras.
-            Com foco em automação, desenvolvimento web e inteligência artificial, procuro sempre
-            simplificar processos complexos através de código limpo e funcional.
-          </p>
-          <p>
-            Atualmente estou focado em projetos que envolvem automação de tarefas, criptomoedas e
-            desenvolvimento de plataformas web modernas.
-          </p>
+          <div className="glass-panel" style={{ padding: '2rem' }}>
+            <div className="about-content">
+              <div className="profile-img-container">
+                <img 
+                  src="https://placehold.co/400x400/1e293b/cbd5e1?text=AM" 
+                  alt="André Morais" 
+                  className="profile-img" 
+                />
+              </div>
+              <div className="bio-text">
+                <p>
+                  Olá! Sou o André, um Engenheiro Informático com uma paixão profunda por criar 
+                  soluções que resolvem problemas reais. Desde a fundação de startups até à 
+                  engenharia de sistemas complexos, o meu foco está sempre na eficiência e inovação.
+                </p>
+                <p>
+                  Especializo-me em desenvolvimento Full-stack, Automação e Inteligência Artificial.
+                  Acredito que a tecnologia deve servir para potenciar as capacidades humanas e 
+                  simplificar o dia-a-dia.
+                </p>
+                
+                <div className="timeline">
+                  {timeline.map((item) => (
+                    <div key={item.id} className="timeline-item">
+                      <div className="timeline-year">{item.year}</div>
+                      <h4 className="timeline-title">{item.role}</h4>
+                      <p className="timeline-desc">{item.organization}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section id="projects">
           <h2>Projetos Recentes</h2>
           <div className="projects-grid">
             {projects.map((project) => (
-              <div key={project.id} className="project-card">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-desc">{project.description}</p>
-                <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                  {project.tech.map((t) => (
-                    <span key={t} style={{
-                      fontSize: '0.75rem',
-                      background: '#334155',
-                      padding: '0.25rem 0.5rem',
-                      borderRadius: '4px',
-                      color: '#cbd5e1'
-                    }}>
-                      {t}
-                    </span>
-                  ))}
+              <div key={project.id} className="glass-panel project-card">
+                {project.image && (
+                  <img src={project.image} alt={project.title} className="project-image" />
+                )}
+                <div className="project-content">
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-desc">{project.description}</p>
+                  <div className="tech-stack">
+                    {project.tech.map((t) => (
+                      <span key={t} className="tech-badge">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        <footer className="footer">
-          <p>© {new Date().getFullYear()} André Morais. Todos os direitos reservados.</p>
+        <footer>
+          <p>© {new Date().getFullYear()} André Morais. Developed with React & TypeScript.</p>
         </footer>
       </div>
     </>
