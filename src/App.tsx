@@ -58,6 +58,12 @@ function App() {
     { id: 1, year: '2015 - 2018', role: 'Curso Tecnologias e Sistemas de Informação', organization: 'Colégio de Gaia' }
   ])
 
+  const [techStack] = useState<string[]>([
+    'React', 'TypeScript', 'Node.js', 'Python', 
+    'Django', 'Solana', 'AI Integration', 'Automation',
+    'PostgreSQL', 'Docker', 'AWS'
+  ])
+
   return (
     <>
       <div className="container">
@@ -96,6 +102,14 @@ function App() {
                       <h4 className="timeline-title">{item.role}</h4>
                       <p className="timeline-desc">{item.organization}</p>
                     </div>
+                  ))}
+                </div>
+
+                <div className="tech-keywords">
+                  {techStack.map((tech) => (
+                    <span key={tech} className="keyword-badge">
+                      {tech}
+                    </span>
                   ))}
                 </div>
               </div>
