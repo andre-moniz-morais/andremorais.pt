@@ -23,28 +23,29 @@ function App() {
       title: 'Raydium Solana Bot',
       description: 'Bot de notificação em tempo real para monitorizar variações de preço na rede Solana.',
       tech: ['Python', 'Solana API', 'Telegram Bot'],
-      image: 'https://placehold.co/600x400/10b981/ffffff?text=Raydium+Bot'
+      // Using purple-tinted placeholders
+      image: 'https://placehold.co/600x400/581c87/e9d5ff?text=Raydium+Bot'
     },
     {
       id: 2,
       title: 'YouTube Automator',
       description: 'Pipeline completo de automação para produção e publicação de vídeos sem intervenção manual.',
       tech: ['Python', 'FFmpeg', 'YouTube API'],
-      image: 'https://placehold.co/600x400/3b82f6/ffffff?text=YT+Automator'
+      image: 'https://placehold.co/600x400/6b21a8/f3e8ff?text=YT+Automator'
     },
     {
       id: 3,
       title: 'Gals4Guys',
       description: 'Plataforma web inovadora para showcase de modelos gerados por Inteligência Artificial.',
       tech: ['React', 'Node.js', 'AI Integration'],
-      image: 'https://placehold.co/600x400/8b5cf6/ffffff?text=Gals4Guys'
+      image: 'https://placehold.co/600x400/7e22ce/faf5ff?text=Gals4Guys'
     },
     {
       id: 4,
       title: 'Velvet Theory Music',
       description: 'Aplicação Django dedicada à pesquisa e catalogação de teoria musical avançada.',
       tech: ['Django', 'PostgreSQL', 'Music Theory'],
-      image: 'https://placehold.co/600x400/f59e0b/ffffff?text=Velvet+Theory'
+      image: 'https://placehold.co/600x400/9333ea/ffffff?text=Velvet+Theory'
     }
   ])
 
