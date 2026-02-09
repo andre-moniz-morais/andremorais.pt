@@ -1,69 +1,15 @@
 import { useState } from 'react'
 import './App.css'
+import { type Project, projects as Projects, type TimelineItem, timeline as Timeline, techStack as TechStack } from './utils/contants.ts';
+import ProjectComponent from './components/ProjectComponent/ProjectComponent.tsx';
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  tech: string[];
-  image?: string;
-}
-
-interface TimelineItem {
-  id: number;
-  year: string;
-  role: string;
-  organization: string;
-}
 
 function App() {
-  const [projects] = useState<Project[]>([
-    {
-      id: 1,
-      title: 'Raydium Solana Bot',
-      description: 'Bot de notificação em tempo real para monitorizar variações de preço na rede Solana.',
-      tech: ['Python', 'Solana API', 'Telegram Bot'],
-      // Using purple-tinted placeholders
-      image: 'https://placehold.co/600x400/581c87/e9d5ff?text=Raydium+Bot'
-    },
-    {
-      id: 2,
-      title: 'YouTube Automator',
-      description: 'Pipeline completo de automação para produção e publicação de vídeos sem intervenção manual.',
-      tech: ['Python', 'FFmpeg', 'YouTube API'],
-      image: 'https://placehold.co/600x400/6b21a8/f3e8ff?text=YT+Automator'
-    },
-    {
-      id: 3,
-      title: 'Gals4Guys',
-      description: 'Plataforma web inovadora para showcase de modelos gerados por Inteligência Artificial.',
-      tech: ['React', 'Node.js', 'AI Integration'],
-      image: 'https://placehold.co/600x400/7e22ce/faf5ff?text=Gals4Guys'
-    },
-    {
-      id: 4,
-      title: 'Velvet Theory Music',
-      description: 'Aplicação Django dedicada à pesquisa e catalogação de teoria musical avançada.',
-      tech: ['Django', 'PostgreSQL', 'Music Theory'],
-      image: 'https://placehold.co/600x400/9333ea/ffffff?text=Velvet+Theory'
-    }
-  ])
+  const [projects] = useState<Project[]>(Projects)
 
-  const [timeline] = useState<TimelineItem[]>([
-    { id: 7, year: '2025 - Atual', role: 'Engenheiro Informático', organization: 'Precise' },
-    { id: 6, year: '2025', role: 'Fundador', organization: 'Unlimited Solutions' },
-    { id: 5, year: '2023 - 2025', role: 'Engenheiro Informático', organization: 'Synertics' },
-    { id: 4, year: '2021 - 2023', role: 'Mestrado em Engenharia Informática (Sistemas Multimédia)', organization: 'Instituto Superior Politécnico do Porto' },
-    { id: 3, year: '2021', role: 'Fundador', organization: 'Skillskope (Startup)' },
-    { id: 2, year: '2018 - 2021', role: 'Licenciatura em Engenharia Informática', organization: 'Universidade de Aveiro' },
-    { id: 1, year: '2015 - 2018', role: 'Curso Tecnologias e Sistemas de Informação', organization: 'Colégio de Gaia' }
-  ])
+  const [timeline] = useState<TimelineItem[]>(Timeline);
 
-  const [techStack] = useState<string[]>([
-    'React', 'TypeScript', 'Node.js', 'Python', 
-    'Django', 'Solana', 'AI Integration', 'Automation',
-    'PostgreSQL', 'Docker', 'AWS'
-  ])
+  const [techStack] = useState<string[]>(TechStack)
 
   return (
     <>
@@ -78,24 +24,24 @@ function App() {
           <div className="glass-panel" style={{ padding: '2rem' }}>
             <div className="about-content">
               <div className="profile-img-container">
-                <img 
-                  src="https://placehold.co/400x400/1e293b/cbd5e1?text=AM" 
-                  alt="André Morais" 
-                  className="profile-img" 
+                <img
+                  src="https://placehold.co/400x400/1e293b/cbd5e1?text=AM"
+                  alt="André Morais"
+                  className="profile-img"
                 />
               </div>
               <div className="bio-text">
                 <p>
-                  Olá! Sou o André, um Engenheiro Informático com uma paixão profunda por criar 
-                  soluções que resolvem problemas reais. Desde a fundação de startups até à 
+                  Olá! Sou o André, um Engenheiro Informático com uma paixão profunda por criar
+                  soluções que resolvem problemas reais. Desde a fundação de startups até à
                   engenharia de sistemas complexos, o meu foco está sempre na eficiência e inovação.
                 </p>
                 <p>
                   Especializo-me em desenvolvimento Full-stack, Automação e Inteligência Artificial.
-                  Acredito que a tecnologia deve servir para potenciar as capacidades humanas e 
+                  Acredito que a tecnologia deve servir para potenciar as capacidades humanas e
                   simplificar o dia-a-dia.
                 </p>
-                
+
                 <div className="timeline">
                   {timeline.map((item) => (
                     <div key={item.id} className="timeline-item">
@@ -122,28 +68,13 @@ function App() {
           <h2>Projetos Recentes</h2>
           <div className="projects-grid">
             {projects.map((project) => (
-              <div key={project.id} className="glass-panel project-card">
-                {project.image && (
-                  <img src={project.image} alt={project.title} className="project-image" />
-                )}
-                <div className="project-content">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-desc">{project.description}</p>
-                  <div className="tech-stack">
-                    {project.tech.map((t) => (
-                      <span key={t} className="tech-badge">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <ProjectComponent key={project.id} project={project} />
             ))}
           </div>
         </section>
 
         <footer>
-          <p>© {new Date().getFullYear()} André Morais. Developed with React & TypeScript.</p>
+          <p>© {new Date().getFullYear()} André Morais. Developed with the help of my assistant Elisa.</p>
         </footer>
       </div>
     </>
